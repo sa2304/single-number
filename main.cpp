@@ -1,14 +1,23 @@
 #include <cassert>
 #include <iostream>
 #include <vector>
+#include <unordered_set>
 
 using namespace std;
 
 class Solution {
  public:
   int singleNumber(vector<int> &nums) {
-    // FIXME
-    return 0;
+    unordered_set<int> occur;
+    for (const auto& i: nums) {
+      if (not occur.count(i)) {
+        occur.insert(i);
+      } else {
+        occur.erase(i);
+      }
+    }
+
+    return *occur.begin();
   }
 };
 
